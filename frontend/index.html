@@ -12,6 +12,23 @@
 <body>
 	<h1>Hello World!</h1>
 	<p>This is a demo page</p>
+	<h2>Hey backend, say hello!</h2>
+	<p id="backend_response"></p>
+	<h2>Now say hello in JSON!</h2>
+	<p id="backend_response_in_json"></p>
+	<script>
+		const responseEl = document.querySelector( "#backend_response" );
+		const responseJsonEl = document.querySelector( "#backend_response_in_json" );
+
+		fetch( "/api/hello" )
+			.then( response => response.text() )
+			.then( response => { responseEl.textContent = response } )
+			.catch( console.warn );
+		fetch( "/api/hello-json" )
+			.then( response => response.json() )
+			.then( response => { responseJsonEl.textContent = JSON.stringify( response ) } )
+			.catch( console.warn );
+	</script>
 </body>
 
 </html>
