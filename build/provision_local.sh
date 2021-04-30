@@ -23,3 +23,12 @@ then
 else
 	echo "Already installed..."
 fi
+
+echo "Installing service file..."
+if [ ! -f /etc/systemd/system/pure-app.service ]
+then
+	cp /home/vagrant/app/config/systemd.service.conf /etc/systemd/system/pure-app.service
+	systemctl daemon-reload
+else
+	echo "Already installed..."
+fi
