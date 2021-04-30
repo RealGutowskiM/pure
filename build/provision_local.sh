@@ -25,10 +25,9 @@ else
 fi
 
 echo "Installing service file..."
-if [ ! -f /etc/systemd/system/pure-app.service ]
-then
-	cp /home/vagrant/app/config/systemd.service.conf /etc/systemd/system/pure-app.service
-	systemctl daemon-reload
-else
-	echo "Already installed..."
-fi
+cp /home/vagrant/app/config/systemd.service.conf /etc/systemd/system/pure-app.service
+systemctl daemon-reload
+
+echo "Installing syslog configuration..."
+cp /home/vagrant/app/config/rsyslog.conf /etc/rsyslog.d/pure-app.conf
+systemctl restart syslog
